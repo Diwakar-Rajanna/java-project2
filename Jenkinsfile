@@ -1,26 +1,21 @@
 pipeline {
-	agent master
+	agent none
+
 	stages {
-		stage ('java clone and build') {
+		stage ('C Project') {
+			agent { label 'java' }
 			steps {
-				sh ''' cd /home/ec2-user/
-				git clone 'https://github.com/Diwakar-Rajanna/java-project2.git'
-				cd java-project2
-				mvn clean install
-				cd target 
-				sh 'sleep 10'
-				'''
-			}	
+			  	git 'https://github.com/GuruDeshmukh/Jenkinsproject2.git'
+					sh 'make'
+			}
 		}
-		stage ('c clone ') {
+		stage ('Java Project') {
+			agent { label 'java-1' }
 			steps {
-				sh ''' cd /home/ec2-user/
-				git clone 'https://github.com/Diwakar-Rajanna/c-project.git'
-				cd c-project
-				make
-				sh 'sleep 10'
-			}	
+				git 'https://github.com/GuruDeshmukh/Test-1.git'
+				sh 'mvn clean install'
+			}
 		}
-			}	
-		}
+		
 	}
+}
