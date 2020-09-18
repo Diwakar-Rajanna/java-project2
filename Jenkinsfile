@@ -8,7 +8,6 @@ pipeline {
 				cd java-project2
 				mvn clean install
 				cd target 
-				cp *.war http://54.252.152.101:8080/
 				sh 'sleep 10'
 				'''
 			}	
