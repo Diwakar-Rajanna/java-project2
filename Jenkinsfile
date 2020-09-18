@@ -1,5 +1,5 @@
 pipeline {
-	agent node1
+	agent master
 	stages {
 		stage ('java clone and build') {
 			steps {
