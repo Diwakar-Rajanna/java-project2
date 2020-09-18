@@ -1,22 +1,27 @@
 pipeline {
-	agent any
-  environment{
-  PATH = /usr/bin/mvn/:$PATH
-  }
+	agent node1
 	stages {
-		stage ('git_clone') {
+		stage ('java clone and build') {
 			steps {
-				git 'https://github.com/Diwakar-Rajanna/java-project2.git'
+				sh ''' cd /home/ec2-user/
+				git clone 'https://github.com/Diwakar-Rajanna/java-project2.git'
+				cd java-project2
+				mvn clean install
+				cd target 
+				cp *.war http://54.252.152.101:8080/
 				sh 'sleep 10'
+				'''
 			}	
 		}
-		stage ('build') {
+		stage ('c clone ') {
 			steps {
-				sh 'mvn clean install '
+				sh ''' cd /home/ec2-user/
+				git clone 'https://github.com/Diwakar-Rajanna/c-project.git'
+				cd c-project
+				make
 				sh 'sleep 10'
 			}	
 		}
 			}	
 		}
 	}
-}
