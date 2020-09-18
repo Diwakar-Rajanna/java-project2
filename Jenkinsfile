@@ -1,7 +1,7 @@
 pipeline {
 	agent any
   environment{
-  PATH = /usr/share/man/man1/:$PATH
+  PATH = /usr/bin/mvn/:$PATH
   }
 	stages {
 		stage ('git_clone') {
